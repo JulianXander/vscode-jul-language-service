@@ -1,0 +1,11 @@
+{
+	"region": {
+		"prefix": "region",
+		"body": [
+			"#region $1",
+			"$TM_SELECTED_TEXT$0",
+			"#endregion $1"
+		],
+		"description": "Code folding region"
+	}
+}

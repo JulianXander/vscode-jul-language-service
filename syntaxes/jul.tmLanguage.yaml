@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+scopeName: source.jul
+fileTypes:
+  - .jul
+patterns:
+  - include: "#expression"
+repository:
+  expression:
+    patterns:
+      # Number
+      - name: constant.numeric
+        match: -?[0-9]+(\.[0-9]+)?
+      # String
+      - name: string.jul
+        begin: §
+        end: §(?![(§#])
+        patterns:
+          - name: constant.character.escape.jul
+            match: §#
+          - include: "#comment"
+          - name: constant.character.escape.jul
+            match: §§
+          - name: string.interpolation.jul
+            begin: §\(
+            beginCaptures:
+              "0":
+                name: punctuation.definition.template-expression.begin
+            end: \)
+            endCaptures:
+              "0":
+                name: punctuation.definition.template-expression.end
+            patterns:
+              - include: "#expression"
+      # Branching
+      - name: keyword.operator.expression.branching.jul
+        match: \?
+      # Function
+      - name: keyword.operator.expression.function.jul
+        match: =>
+      # FunctionCall
+      - name: function-call.jul
+        begin: "([a-zA-Z][0-9a-zA-Z]*\\$?)\\("
+        beginCaptures:
+          "1":
+            name: entity.name.function
+        end: \)
+        patterns:
+          - include: "#expression"
+      # Object
+      - name: entity.object.jul
+        begin: \(
+        end: \)
+        patterns:
+          - include: "#expression"
+      # Type
+      - name: "support.type.jul"
+        match: "[A-Z][0-9a-zA-Z]*"
+      # Reference
+      - name: "variable.jul"
+        match: "[a-zA-Z][0-9a-zA-Z]*\\$?"
+      # Comment
+      - include: "#comment"
+      # Definition
+      - name: definition.jul
+        match: "="
+  comment:
+    name: comment.jul
+    begin: "#"
+    end: '\n'

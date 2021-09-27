@@ -1,0 +1,57 @@
+{
+	"name": "vscode-jul",
+	"publisher": "Julian Xander",
+	"version": "0.0.1",
+	"displayName": "JUL",
+	"description": "JUL language support",
+	"categories": [
+		"Programming Languages"
+	],
+	"icon": "icon.png",
+	"repository": "https://github.com/JulianXander/vscode-jul-language-client",
+	"activationEvents": [
+		"onLanguage:jul"
+	],
+	"engines": {
+		"vscode": "^1.52.0"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "jul",
+				"extensions": [
+					".jul"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "jul",
+				"scopeName": "source.jul",
+				"path": "./syntaxes/jul.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "jul",
+				"path": "./snippets.json"
+			}
+		]
+	},
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "npx tsc && cp -R ../language-server out",
+		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
+		"test-deploy": "cp -R ../language-service $HOME/.vscode/extensions"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^7.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.10",
+		"@types/vscode": "^1.60.0",
+		"js-yaml": "^4.1.0",
+		"typescript": "^4.4.3"
+	}
+}
