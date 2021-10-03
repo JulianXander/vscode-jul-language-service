@@ -37,7 +37,13 @@
 				"language": "jul",
 				"path": "./snippets.json"
 			}
-		]
+		],
+		"configurationDefaults": {
+			"[jul]": {
+				"editor.detectIndentation": false,
+				"editor.insertSpaces": false
+			}
+		}
 	},
 	"main": "./out/extension",
 	"scripts": {
