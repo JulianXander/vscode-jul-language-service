@@ -19,7 +19,17 @@
         {
           "name": "string.jul",
           "begin": "§",
-          "end": "§(?![(§#])",
+          "beginCaptures": {
+            "0": {
+              "name": "constant.character.escape.jul"
+            }
+          },
+          "end": "(§)(?![(§#])",
+          "endCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            }
+          },
           "patterns": [
             {
               "name": "constant.character.escape.jul",
@@ -93,7 +103,15 @@
         },
         {
           "name": "variable.jul",
-          "match": "[a-zA-Z][0-9a-zA-Z]*\\$?"
+          "match": "[a-zA-Z][0-9a-zA-Z]*\\$"
+        },
+        {
+          "name": "entity.name.type.jul",
+          "match": "[A-Z][0-9a-zA-Z]*\\$"
+        },
+        {
+          "name": "variable.other.constant.jul",
+          "match": "[a-z][0-9a-zA-Z]*"
         },
         {
           "include": "#comment"
