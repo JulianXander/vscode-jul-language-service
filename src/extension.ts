@@ -50,7 +50,7 @@ let client: LanguageClient;
 export function activate(context: ExtensionContext) {
 	// The server is implemented in node
 	const serverModule = context.asAbsolutePath(
-		join('out', 'language-server', 'out', 'language-server', 'src', 'server.js')
+		join('out', 'jul-language-server', 'out', 'jul-language-server', 'src', 'server.js')
 	);
 	// The debug options for the server
 	// --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging

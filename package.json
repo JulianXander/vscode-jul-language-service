@@ -41,7 +41,7 @@
 	},
 	"main": "./out/extension",
 	"scripts": {
-		"compile": "npx tsc && cp -R ../language-server out",
+		"compile": "npx tsc && cp -R ../jul-language-server out",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"test-deploy": "cp -R ../language-service $HOME/.vscode/extensions"
 	},
