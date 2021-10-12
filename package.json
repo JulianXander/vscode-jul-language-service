@@ -8,7 +8,10 @@
 		"Programming Languages"
 	],
 	"icon": "icon.png",
-	"repository": "https://github.com/JulianXander/vscode-jul-language-client",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JulianXander/vscode-jul-language-client"
+	},
 	"activationEvents": [
 		"onLanguage:jul"
 	],
@@ -47,9 +50,9 @@
 	},
 	"main": "./out/extension",
 	"scripts": {
-		"compile": "npx tsc && cp -R ../jul-language-server out",
+		"compile": "npx tsc",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
-		"test-deploy": "cp -R ../vscode-jul-language-service $HOME/.vscode/extensions"
+		"test-deploy": "rsync -a ../vscode-jul-language-service $HOME/.vscode/extensions --exclude .git"
 	},
 	"dependencies": {
 		"vscode-languageclient": "^7.0.0"
