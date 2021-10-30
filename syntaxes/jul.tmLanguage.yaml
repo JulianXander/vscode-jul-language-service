@@ -77,6 +77,16 @@ repository:
       - name: definition.jul
         match: "="
   comment:
-    name: comment.jul
-    begin: "#"
-    end: '\n'
+    patterns:
+      # region Comment
+      - name: punctuation.definition.tag.jul
+        begin: "#(end)?region"
+        end: '\n'
+      # TODO Comment
+      - name: invalid.jul
+        begin: "# ?[tT][oO][dD][oO]"
+        end: '\n'
+      # Plain Comment
+      - name: comment.jul
+        begin: "#"
+        end: '\n'

@@ -123,9 +123,23 @@
       ]
     },
     "comment": {
-      "name": "comment.jul",
-      "begin": "#",
-      "end": "\\n"
+      "patterns": [
+        {
+          "name": "punctuation.definition.tag.jul",
+          "begin": "#(end)?region",
+          "end": "\\n"
+        },
+        {
+          "name": "invalid.jul",
+          "begin": "# ?[tT][oO][dD][oO]",
+          "end": "\\n"
+        },
+        {
+          "name": "comment.jul",
+          "begin": "#",
+          "end": "\\n"
+        }
+      ]
     }
   }
 }
