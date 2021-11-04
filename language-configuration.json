@@ -35,7 +35,7 @@
 			"end": "s*#endregion\\b"
 		}
 	},
-	"wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+	"wordPattern": "[a-zA-Z][0-9a-zA-Z]*\\$?",
 	"indentationRules": {
 		"increaseIndentPattern": "(=>|\\?|\\()$",
 		"decreaseIndentPattern": "^\\s\\)"

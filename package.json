@@ -43,6 +43,7 @@
 		],
 		"configurationDefaults": {
 			"[jul]": {
+				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
 				"editor.detectIndentation": false,
 				"editor.insertSpaces": false
 			}
