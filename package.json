@@ -52,7 +52,7 @@
 	},
 	"main": "./out/extension",
 	"scripts": {
-		"compile": "npx tsc",
+		"build": "npx tsc",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"test-deploy": "rsync -a ../vscode-jul-language-service $HOME/.vscode/extensions --exclude .git"
 	},
