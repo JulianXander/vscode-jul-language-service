@@ -51,13 +51,16 @@ export function activate(context: ExtensionContext) {
 	const serverModule = context.asAbsolutePath(
 		join('out', 'jul-language-server', 'out', 'jul-language-server', 'src', 'server.js')
 	);
+	const debugServerModule = context.asAbsolutePath(
+		join('..', 'jul-language-server', 'out', 'jul-language-server', 'src', 'server.js')
+	);
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
 	const serverOptions: ServerOptions = {
 		run: { module: serverModule, transport: TransportKind.ipc },
 		debug: {
-			module: serverModule,
+			module: debugServerModule,
 			transport: TransportKind.ipc,
 			// --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
 			options: { execArgv: ['--nolazy', '--inspect=6009'] }

@@ -20,15 +20,5 @@
 			// 	"script": "build"
 			// }
 		},
-		{
-			"type": "node",
-			"request": "attach",
-			"name": "Attach to Server",
-			"port": 6009,
-			"restart": true,
-			"outFiles": [
-				"${workspaceRoot}/out/jul-language-server/**/*.js"
-			]
-		},
 	]
 }
