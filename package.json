@@ -54,8 +54,8 @@
 	"scripts": {
 		"build": "npx tsc",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
-		"test-deploy": "copyfiles -a ../vscode-jul-language-service $HOME/.vscode/extensions --exclude .git",
-		"test-deploy-windows": "copyfiles -a ./** %USERPROFILE%/.vscode/extensions/vscode-jul-language-service --exclude .git"
+		"test-deploy": "copyfiles ./** $HOME/.vscode/extensions/vscode-jul-language-service",
+		"test-deploy-windows": "copyfiles ./** %USERPROFILE%/.vscode/extensions/vscode-jul-language-service"
 	},
 	"dependencies": {
 		"vscode-languageclient": "^7.0.0"
