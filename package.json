@@ -46,7 +46,8 @@
 				"editor.detectIndentation": false,
 				"editor.insertSpaces": false,
 				"editor.tabSize": 2,
-				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?§"
+				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?§",
+				"files.eol": "\n"
 			}
 		}
 	},
