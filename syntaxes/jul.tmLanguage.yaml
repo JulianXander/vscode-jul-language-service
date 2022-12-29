@@ -10,7 +10,10 @@ repository:
     patterns:
       # Number
       - name: constant.numeric
-        match: -?[0-9]+(\.[0-9]+)?
+        match: -?[0-9]+(\.[0-9]+)?(f?)
+        captures:
+          2:
+            name: keyword.operator.expression.float.jul
       # String
       - name: string.jul
         begin: §
