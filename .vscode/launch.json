@@ -20,5 +20,15 @@
 			// 	"script": "build"
 			// }
 		},
+	],
+	"compounds": [
+		{
+			"name": "Launch Client and Debug Server",
+			"configurations": [
+				"Launch Client",
+				"Attach to Server"
+			],
+			"stopAll": true
+		}
 	]
 }
