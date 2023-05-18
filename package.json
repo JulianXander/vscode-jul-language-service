@@ -48,6 +48,9 @@
 				"editor.tabSize": 2,
 				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?§",
 				"files.eol": "\n"
+			},
+			"yaml.schemas": {
+				"C:\\Projects\\JUL\\jul-compiler\\src\\jul-config-schema.json": "*jul-config.yaml"
 			}
 		}
 	},
