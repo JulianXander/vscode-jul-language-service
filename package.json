@@ -62,6 +62,7 @@
 		"test-deploy-windows": "copyfiles ./** %USERPROFILE%/.vscode/extensions/vscode-jul-language-service"
 	},
 	"dependencies": {
+		"jul-lsp-server": "file:../jul-language-server",
 		"vscode-languageclient": "^8.0.2"
 	},
 	"devDependencies": {
