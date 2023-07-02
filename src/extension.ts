@@ -49,10 +49,10 @@ let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
 	const serverModule = context.asAbsolutePath(
-		join('out', 'jul-language-server', 'out', 'jul-language-server', 'src', 'server.js')
+		join('node_modules', 'jul-lsp-server', 'out', 'server.js')
 	);
 	const debugServerModule = context.asAbsolutePath(
-		join('..', 'jul-language-server', 'out', 'jul-language-server', 'src', 'server.js')
+		join('..', 'jul-language-server', 'out', 'server.js')
 	);
 
 	// If the extension is launched in debug mode then the debug server options are used
