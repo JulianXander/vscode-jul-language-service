@@ -48,12 +48,18 @@
 				"editor.tabSize": 2,
 				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?§",
 				"files.eol": "\n"
-			},
-			"yaml.schemas": {
-				"C:\\Projects\\JUL\\jul-compiler\\src\\jul-config-schema.json": "*jul-config.yaml"
 			}
-		}
+		},
+		"yamlValidation": [
+			{
+				"fileMatch": "*jul-config.yaml",
+				"url": "./node_modules/jul-lsp-server/node_modules/jul-compiler/src/jul-config-schema.json"
+			}
+		]
 	},
+	"extensionDependencies": [
+		"redhat.vscode-yaml"
+	],
 	"main": "./out/extension",
 	"scripts": {
 		"build": "npx tsc",
