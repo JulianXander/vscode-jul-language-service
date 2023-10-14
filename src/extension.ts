@@ -62,8 +62,8 @@ export function activate(context: ExtensionContext) {
 		debug: {
 			module: debugServerModule,
 			transport: TransportKind.ipc,
-			// --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
-			options: { execArgv: ['--nolazy', '--inspect=6009'] }
+			// --inspect=9229: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
+			options: { execArgv: ['--nolazy', '--inspect=9229'] }
 		}
 	};
 
