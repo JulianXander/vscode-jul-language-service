@@ -70,8 +70,8 @@ export function activate(context: ExtensionContext) {
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [{ scheme: 'file', language: 'jul' }],
 		synchronize: {
-			// Notify the server about file changes to '.clientrc files contained in the workspace
-			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
+			// Notify the server about file changes to code files contained in the workspace
+			fileEvents: workspace.createFileSystemWatcher('**/*.{js,json,jul,ts,yaml}')
 		}
 	};
 
