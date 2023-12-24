@@ -22,6 +22,92 @@
           }
         },
         {
+          "name": "meta.embedded.block",
+          "begin": "(§)(html)\\n",
+          "beginCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            },
+            "2": {
+              "name": "string.jul"
+            }
+          },
+          "end": "(§)(?![(§#])",
+          "endCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#textContent"
+            },
+            {
+              "begin": "(?=[^§])",
+              "end": "([^§]*)((?=§)|\\n)",
+              "contentName": "meta.embedded.block.html",
+              "endCaptures": {
+                "1": {
+                  "name": "meta.embedded.block.html",
+                  "patterns": [
+                    {
+                      "include": "text.html.basic"
+                    }
+                  ]
+                }
+              },
+              "patterns": [
+                {
+                  "include": "text.html.basic"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.block",
+          "begin": "(§)(js)\\n",
+          "beginCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            },
+            "2": {
+              "name": "string.jul"
+            }
+          },
+          "end": "(§)(?![(§#])",
+          "endCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#textContent"
+            },
+            {
+              "begin": "(?=.)",
+              "end": "([^§]*)((?=§)|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "meta.embedded.block.javascript",
+                  "patterns": [
+                    {
+                      "include": "source.js"
+                    }
+                  ]
+                }
+              },
+              "contentName": "meta.embedded.block.javascript",
+              "patterns": [
+                {
+                  "include": "source.js"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "string.jul",
           "begin": "§",
           "beginCaptures": {
@@ -37,35 +123,7 @@
           },
           "patterns": [
             {
-              "name": "constant.character.escape.jul",
-              "match": "§#"
-            },
-            {
-              "include": "#comment"
-            },
-            {
-              "name": "constant.character.escape.jul",
-              "match": "§§"
-            },
-            {
-              "name": "string.interpolation.jul",
-              "begin": "§\\(",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.template-expression.begin"
-                }
-              },
-              "end": "\\)",
-              "endCaptures": {
-                "0": {
-                  "name": "punctuation.definition.template-expression.end"
-                }
-              },
-              "patterns": [
-                {
-                  "include": "#expression"
-                }
-              ]
+              "include": "#textContent"
             }
           ]
         },
@@ -131,18 +189,53 @@
       "patterns": [
         {
           "name": "punctuation.definition.tag.jul",
-          "begin": "#(end)?region",
+          "begin": "\\t*#(end)?region",
           "end": "\\n"
         },
         {
           "name": "invalid.jul",
-          "begin": "# ?[tT][oO][dD][oO]",
+          "begin": "\\t*# ?[tT][oO][dD][oO]",
           "end": "\\n"
         },
         {
           "name": "comment.jul",
-          "begin": "#",
+          "begin": "\\t*#",
           "end": "\\n"
+        }
+      ]
+    },
+    "textContent": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.jul",
+          "match": "§#"
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "name": "constant.character.escape.jul",
+          "match": "§§"
+        },
+        {
+          "name": "string.interpolation.jul",
+          "begin": "§\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.template-expression.begin"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.template-expression.end"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
         }
       ]
     }

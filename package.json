@@ -32,7 +32,11 @@
 			{
 				"language": "jul",
 				"scopeName": "source.jul",
-				"path": "./syntaxes/jul.tmLanguage.json"
+				"path": "./syntaxes/jul.tmLanguage.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.html": "html",
+					"meta.embedded.block.javascript": "javascript"
+				}
 			}
 		],
 		"snippets": [

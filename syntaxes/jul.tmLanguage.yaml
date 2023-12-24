@@ -14,7 +14,55 @@ repository:
         captures:
           2:
             name: keyword.operator.expression.float.jul
-      # String
+      # html Text
+      - name: meta.embedded.block
+        begin: (§)(html)\n
+        beginCaptures:
+          "1":
+            name: constant.character.escape.jul
+          "2":
+            name: string.jul
+        end: (§)(?![(§#])
+        endCaptures:
+          "1":
+            name: constant.character.escape.jul
+        patterns:
+          - include: "#textContent"
+          - begin: "(?=.)"
+            end: ([^§]*)((?=§)|\n)
+            contentName: meta.embedded.block.html
+            endCaptures:
+              "1":
+                name: meta.embedded.block.html
+                patterns:
+                  - include: text.html.basic
+            patterns:
+              - include: text.html.basic
+      # js Text
+      - name: meta.embedded.block
+        begin: (§)(js)\n
+        beginCaptures:
+          "1":
+            name: constant.character.escape.jul
+          "2":
+            name: string.jul
+        end: (§)(?![(§#])
+        endCaptures:
+          "1":
+            name: constant.character.escape.jul
+        patterns:
+          - include: "#textContent"
+          - begin: "(?=.)"
+            end: ([^§]*)((?=§)|\n)
+            endCaptures:
+              "1":
+                name: meta.embedded.block.javascript
+                patterns:
+                  - include: source.js
+            contentName: meta.embedded.block.javascript
+            patterns:
+              - include: source.js
+      # plain Text
       - name: string.jul
         begin: §
         beginCaptures:
@@ -25,22 +73,7 @@ repository:
           "1":
             name: constant.character.escape.jul
         patterns:
-          - name: constant.character.escape.jul
-            match: §#
-          - include: "#comment"
-          - name: constant.character.escape.jul
-            match: §§
-          - name: string.interpolation.jul
-            begin: §\(
-            beginCaptures:
-              "0":
-                name: punctuation.definition.template-expression.begin
-            end: \)
-            endCaptures:
-              "0":
-                name: punctuation.definition.template-expression.end
-            patterns:
-              - include: "#expression"
+          - include: "#textContent"
       # Branching
       - name: keyword.operator.expression.branching.jul
         match: \?
@@ -81,15 +114,33 @@ repository:
         match: "="
   comment:
     patterns:
-      # region Comment
+      # region comment
       - name: punctuation.definition.tag.jul
-        begin: "#(end)?region"
+        begin: "\\t*#(end)?region"
         end: '\n'
-      # TODO Comment
+      # todo comment
       - name: invalid.jul
-        begin: "# ?[tT][oO][dD][oO]"
+        begin: "\\t*# ?[tT][oO][dD][oO]"
         end: '\n'
-      # Plain Comment
+      # plain comment
       - name: comment.jul
-        begin: "#"
+        begin: \t*#
         end: '\n'
+  textContent:
+    patterns:
+      - name: constant.character.escape.jul
+        match: §#
+      - include: "#comment"
+      - name: constant.character.escape.jul
+        match: §§
+      - name: string.interpolation.jul
+        begin: §\(
+        beginCaptures:
+          "0":
+            name: punctuation.definition.template-expression.begin
+        end: \)
+        endCaptures:
+          "0":
+            name: punctuation.definition.template-expression.end
+        patterns:
+          - include: "#expression"
