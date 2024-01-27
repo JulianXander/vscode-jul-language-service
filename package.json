@@ -12,11 +12,8 @@
 		"type": "git",
 		"url": "https://github.com/JulianXander/vscode-jul-language-client"
 	},
-	"activationEvents": [
-		"onLanguage:jul"
-	],
 	"engines": {
-		"vscode": "^1.52.0"
+		"vscode": "^1.83.0"
 	},
 	"contributes": {
 		"languages": [
