@@ -65,7 +65,7 @@
 	"scripts": {
 		"build": "npx tsc",
 		"esbuild": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
-		"package": "vsce package --yarn",
+		"package": "vsce package --skip-license --no-dependencies",
 		"install-vsix": "code --install-extension vscode-jul-0.0.1.vsix",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"test-deploy": "run-script-os",
