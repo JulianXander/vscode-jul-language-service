@@ -64,13 +64,13 @@
 	"main": "./out/extension",
 	"scripts": {
 		"build": "npx tsc",
-		"esbuild": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
 		"package": "vsce package --skip-license --no-dependencies",
 		"install-vsix": "code --install-extension vscode-jul-0.0.1.vsix",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
-		"test-deploy": "run-script-os",
-		"test-deploy:nix": "copyfiles --follow ./** $HOME/.vscode/extensions/vscode-jul-language-service",
-		"test-deploy:windows": "copyfiles --follow ./** %USERPROFILE%/.vscode/extensions/vscode-jul-language-service"
+		"test-deploy": "npm run package && npm run install-vsix && npm run copy-modules",
+		"copy-modules": "run-script-os",
+		"copy-modules:nix": "copyfiles --follow ./node_modules/** \"$HOME/.vscode/extensions/julian xander.vscode-jul-0.0.1\"",
+		"copy-modules:windows": "copyfiles --follow ./node_modules/** \"%USERPROFILE%/.vscode/extensions/julian xander.vscode-jul-0.0.1\""
 	},
 	"dependencies": {
 		"jul-lsp-server": "file:../jul-language-server",
@@ -79,7 +79,6 @@
 	"devDependencies": {
 		"@types/node": "^18.18.5",
 		"@types/vscode": "^1.83.0",
-		"esbuild": "^0.20.0",
 		"js-yaml": "^4.1.0",
 		"run-script-os": "^1.1.6",
 		"typescript": "^5.2.2"
