@@ -64,9 +64,9 @@
 	"main": "./out/extension",
 	"scripts": {
 		"build": "npx tsc",
+		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"package": "vsce package --skip-license --no-dependencies",
 		"install-vsix": "code --install-extension vscode-jul-0.0.1.vsix",
-		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"test-deploy": "npm run package && npm run install-vsix && npm run copy-modules",
 		"copy-modules": "run-script-os",
 		"copy-modules:nix": "copyfiles --follow ./node_modules/** \"$HOME/.vscode/extensions/julian xander.vscode-jul-0.0.1\"",
