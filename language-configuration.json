@@ -15,7 +15,10 @@
 		},
 		{
 			"open": "§",
-			"close": "§"
+			"close": "§",
+			"notIn": [
+				"string"
+			]
 		}
 	],
 	"autoCloseBefore": ";:.,=}])>` \n\t",
