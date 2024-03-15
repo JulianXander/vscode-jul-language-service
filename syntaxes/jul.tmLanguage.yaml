@@ -82,6 +82,9 @@ repository:
       # Function
       - name: keyword.operator.expression.function.jul
         match: =>
+      # ReturnType
+      - name: keyword.operator.expression.returntype.jul
+        match: :>
       # FunctionCall
       - name: function-call.jul
         begin: "([a-zA-Z][0-9a-zA-Z]*\\$?)\\("

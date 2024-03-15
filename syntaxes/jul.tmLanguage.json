@@ -43,7 +43,7 @@
               "include": "#textContent"
             },
             {
-              "begin": "(?=[^§])",
+              "begin": "(?=.)",
               "end": "([^§]*)((?=§)|\\n)",
               "contentName": "meta.embedded.block.html",
               "endCaptures": {
@@ -134,6 +134,10 @@
         {
           "name": "keyword.operator.expression.function.jul",
           "match": "=>"
+        },
+        {
+          "name": "keyword.operator.expression.returntype.jul",
+          "match": ":>"
         },
         {
           "name": "function-call.jul",
