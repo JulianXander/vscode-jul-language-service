@@ -1,6 +1,6 @@
 {
 	"name": "vscode-jul",
-	"publisher": "Julian Xander",
+	"publisher": "JulianXander",
 	"version": "0.0.1",
 	"displayName": "JUL",
 	"description": "JUL language support",
@@ -69,8 +69,8 @@
 		"install-vsix": "code --install-extension vscode-jul-0.0.1.vsix",
 		"test-deploy": "npm run package && npm run install-vsix && npm run copy-modules",
 		"copy-modules": "run-script-os",
-		"copy-modules:nix": "copyfiles --follow ./node_modules/** \"$HOME/.vscode/extensions/julian xander.vscode-jul-0.0.1\"",
-		"copy-modules:windows": "copyfiles --follow ./node_modules/** \"%USERPROFILE%/.vscode/extensions/julian xander.vscode-jul-0.0.1\""
+		"copy-modules:nix": "copyfiles --follow ./node_modules/** \"$HOME/.vscode/extensions/julianxander.vscode-jul-0.0.1\"",
+		"copy-modules:windows": "copyfiles --follow ./node_modules/** \"%USERPROFILE%/.vscode/extensions/julianxander.vscode-jul-0.0.1\""
 	},
 	"dependencies": {
 		"jul-lsp-server": "file:../jul-language-server",
