@@ -6,12 +6,20 @@
 		[
 			"(",
 			")"
+		],
+		[
+			"[",
+			"]"
 		]
 	],
 	"autoClosingPairs": [
 		{
 			"open": "(",
 			"close": ")"
+		},
+		{
+			"open": "[",
+			"close": "]"
 		},
 		{
 			"open": "§",
@@ -28,6 +36,10 @@
 			")"
 		],
 		[
+			"[",
+			"]"
+		],
+		[
 			"§",
 			"§"
 		]
@@ -40,7 +52,7 @@
 	},
 	"wordPattern": "[a-zA-Z][0-9a-zA-Z]*\\$?",
 	"indentationRules": {
-		"increaseIndentPattern": "(=>|\\?|\\()$",
-		"decreaseIndentPattern": "^\\s\\)"
+		"increaseIndentPattern": "(=>|\\?|\\(|\\[)$",
+		"decreaseIndentPattern": "^\\s*[\\)\\]]"
 	}
 }

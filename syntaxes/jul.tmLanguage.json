@@ -155,6 +155,16 @@
           ]
         },
         {
+          "name": "meta.structure.jul",
+          "begin": "\\[",
+          "end": "\\]",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
           "name": "entity.object.jul",
           "begin": "\\(",
           "end": "\\)",

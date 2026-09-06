@@ -94,7 +94,13 @@ repository:
         end: \)
         patterns:
           - include: "#expression"
-      # Object
+      # Datenliteral (List, Dictionary, DictionaryType, Empty)
+      - name: meta.structure.jul
+        begin: \[
+        end: \]
+        patterns:
+          - include: "#expression"
+      # Bindungsstelle (Parameterliste, Destructuring-Ziel)
       - name: entity.object.jul
         begin: \(
         end: \)
