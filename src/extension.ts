@@ -11,6 +11,7 @@ import {
 	Position,
 	Range,
 	languages,
+	TextDocumentContentProvider,
 } from 'vscode';
 
 import {
@@ -85,6 +86,23 @@ export function activate(context: ExtensionContext) {
 
 	// Start the client. This will also launch the server
 	client.start();
+
+	//#region core-lib virtual document
+	// Die core-lib wird als read only virtual document geöffnet, damit go to definition auf builtIns
+	// nicht in der kompilierten Kopie unter out/ landet, die beim nächsten build überschrieben wird.
+	// Der Inhalt kommt vom Server, da dessen core-lib Pfad je nach debug/Normalbetrieb variiert.
+	const coreLibScheme = 'jul-core-lib';
+	const coreLibContentProvider: TextDocumentContentProvider = {
+		provideTextDocumentContent: async () => {
+			// idempotent, liefert das bestehende start Promise, falls der Server noch hochfährt
+			await client.start();
+			return client.sendRequest<string>('jul/coreLibContent');
+		},
+	};
+	context.subscriptions.push(workspace.registerTextDocumentContentProvider(
+		coreLibScheme,
+		coreLibContentProvider));
+	//#endregion core-lib virtual document
 }
 
 export function deactivate(): Thenable<void> | undefined {
