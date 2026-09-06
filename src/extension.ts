@@ -68,8 +68,16 @@ export function activate(context: ExtensionContext) {
 		}
 	};
 
+	// Scheme des read only virtual document für die core-lib, siehe unten
+	const coreLibScheme = 'jul-core-lib';
+
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ scheme: 'file', language: 'jul' }],
+		documentSelector: [
+			{ scheme: 'file', language: 'jul' },
+			// auch das virtual document an den Server synchronisieren,
+			// sonst funktionieren darin weder hover noch go to definition
+			{ scheme: coreLibScheme, language: 'jul' },
+		],
 		synchronize: {
 			// Notify the server about file changes to code files contained in the workspace
 			fileEvents: workspace.createFileSystemWatcher('**/*.{js,json,jul,ts,yaml}')
@@ -91,7 +99,6 @@ export function activate(context: ExtensionContext) {
 	// Die core-lib wird als read only virtual document geöffnet, damit go to definition auf builtIns
 	// nicht in der kompilierten Kopie unter out/ landet, die beim nächsten build überschrieben wird.
 	// Der Inhalt kommt vom Server, da dessen core-lib Pfad je nach debug/Normalbetrieb variiert.
-	const coreLibScheme = 'jul-core-lib';
 	const coreLibContentProvider: TextDocumentContentProvider = {
 		provideTextDocumentContent: async () => {
 			// idempotent, liefert das bestehende start Promise, falls der Server noch hochfährt
