@@ -2,12 +2,6 @@ import { join } from 'path';
 import {
 	workspace,
 	ExtensionContext,
-	SemanticTokensLegend,
-	DocumentSemanticTokensProvider,
-	TextDocument,
-	ProviderResult,
-	SemanticTokens,
-	SemanticTokensBuilder,
 	Position,
 	Range,
 	languages,
@@ -24,31 +18,6 @@ import {
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient/node';
-
-//#region semantic highlighting
-// const tokenTypes = ['function', 'parameter', 'type', 'variable'];
-// const tokenModifiers = ['declaration'];
-// const legend = new SemanticTokensLegend(tokenTypes, tokenModifiers);
-
-// const provider: DocumentSemanticTokensProvider = {
-// 	provideDocumentSemanticTokens(
-// 		document: TextDocument
-// 	): ProviderResult<SemanticTokens> {
-// 		console.log('providing document tokens')
-// 		// TODO
-// 		const tokensBuilder = new SemanticTokensBuilder(legend);
-// 		// on line 1, characters 1-5 are a class declaration
-// 		tokensBuilder.push(
-// 			new Range(new Position(1, 1), new Position(1, 5)),
-// 			'class',
-// 			['declaration']
-// 		);
-// 		return tokensBuilder.build();
-// 	}
-// };
-
-// languages.registerDocumentSemanticTokensProvider({ language: 'jul', scheme: 'file' }, provider, legend);
-//#endregion semantic highlighting
 
 let client: LanguageClient;
 

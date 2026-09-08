@@ -175,16 +175,12 @@
           ]
         },
         {
-          "name": "support.type.jul",
+          "name": "entity.name.type.jul",
           "match": "[A-Z][0-9a-zA-Z]*"
         },
         {
           "name": "variable.jul",
           "match": "[a-zA-Z][0-9a-zA-Z]*\\$"
-        },
-        {
-          "name": "entity.name.type.jul",
-          "match": "[A-Z][0-9a-zA-Z]*\\$"
         },
         {
           "name": "variable.other.constant.jul",

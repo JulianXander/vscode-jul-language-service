@@ -54,6 +54,16 @@
 				}
 			}
 		],
+		"semanticTokenScopes": [
+			{
+				"language": "jul",
+				"scopes": {
+					"variable.stream": [
+						"variable"
+					]
+				}
+			}
+		],
 		"configurationDefaults": {
 			"[jul]": {
 				"editor.detectIndentation": false,
