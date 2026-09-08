@@ -12,6 +12,10 @@ import {
 	Range,
 	languages,
 	TextDocumentContentProvider,
+	TextEditor,
+	ThemeColor,
+	Uri,
+	window,
 } from 'vscode';
 
 import {
@@ -110,7 +114,47 @@ export function activate(context: ExtensionContext) {
 		coreLibScheme,
 		coreLibContentProvider));
 	//#endregion core-lib virtual document
+
+	registerEmptyLiteralDecoration(context);
 }
+
+//#region empty literal decoration
+// Die bracket pair colorization von VSCode wird nach der Tokenisierung auf die Klammerzeichen
+// gelegt und übermalt damit jede Farbe aus Grammatik oder Semantic Tokens. Eine Decoration liegt
+// darüber und ist deshalb der einzige Weg, [] als eigenen Wert erkennbar zu machen.
+function registerEmptyLiteralDecoration(context: ExtensionContext): void {
+	const decorationType = window.createTextEditorDecorationType({
+		color: new ThemeColor('jul.emptyLiteralForeground'),
+	});
+	context.subscriptions.push(decorationType);
+
+	async function update(editor: TextEditor): Promise<void> {
+		if (editor.document.languageId !== 'jul') {
+			return;
+		}
+		const ranges = await client.sendRequest<Range[]>('jul/emptyLiterals', {
+			uri: editor.document.uri.toString(),
+		});
+		editor.setDecorations(decorationType, ranges.map(range => new Range(
+			new Position(range.start.line, range.start.character),
+			new Position(range.end.line, range.end.character))));
+	}
+
+	function updateVisible(uris: readonly Uri[]): void {
+		const changed = uris.map(uri => uri.toString());
+		window.visibleTextEditors
+			.filter(editor => changed.includes(editor.document.uri.toString()))
+			.forEach(update);
+	}
+
+	context.subscriptions.push(
+		window.onDidChangeVisibleTextEditors(editors => editors.forEach(update)),
+		// Diagnostics belegen, dass der Server die Datei neu geparst hat - ein Timer nach
+		// didChange würde nur raten, wann die Positionen gültig sind
+		languages.onDidChangeDiagnostics(event => updateVisible(event.uris)));
+	window.visibleTextEditors.forEach(update);
+}
+//#endregion empty literal decoration
 
 export function deactivate(): Thenable<void> | undefined {
 	if (!client) {

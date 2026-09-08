@@ -42,6 +42,18 @@
 				"path": "./snippets.json"
 			}
 		],
+		"colors": [
+			{
+				"id": "jul.emptyLiteralForeground",
+				"description": "Farbe des Empty-Literals [], das ein eigener Wert ist und kein leeres Klammernpaar",
+				"defaults": {
+					"dark": "#569CD6",
+					"light": "#0000FF",
+					"highContrast": "#569CD6",
+					"highContrastLight": "#0000FF"
+				}
+			}
+		],
 		"configurationDefaults": {
 			"[jul]": {
 				"editor.detectIndentation": false,
