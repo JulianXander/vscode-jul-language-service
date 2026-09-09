@@ -85,7 +85,7 @@
 	],
 	"main": "./out/extension",
 	"scripts": {
-		"build": "npx tsc",
+		"build": "rimraf out && npx tsc",
 		"convert-grammar": "npx js-yaml syntaxes/jul.tmLanguage.yaml > syntaxes/jul.tmLanguage.json",
 		"package": "vsce package --skip-license --no-dependencies",
 		"install-vsix": "code --install-extension vscode-jul-0.0.1.vsix",
