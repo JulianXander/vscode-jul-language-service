@@ -140,6 +140,21 @@
           "match": ":>"
         },
         {
+          "name": "import-call.jul",
+          "begin": "(import)\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.import.jul"
+            }
+          },
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
           "name": "function-call.jul",
           "begin": "([a-zA-Z][0-9a-zA-Z]*\\$?)\\(",
           "beginCaptures": {
@@ -185,6 +200,10 @@
         {
           "name": "constant.language.boolean.jul",
           "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "keyword.control.import.jul",
+          "match": "\\bimport\\b(?!\\()"
         },
         {
           "name": "variable.other.constant.jul",
