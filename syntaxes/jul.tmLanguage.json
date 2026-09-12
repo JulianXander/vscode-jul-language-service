@@ -183,6 +183,10 @@
           "match": "[a-zA-Z][0-9a-zA-Z]*\\$"
         },
         {
+          "name": "constant.language.boolean.jul",
+          "match": "\\b(true|false)\\b"
+        },
+        {
           "name": "variable.other.constant.jul",
           "match": "[a-z][0-9a-zA-Z]*"
         },

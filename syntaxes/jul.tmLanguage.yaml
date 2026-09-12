@@ -114,6 +114,9 @@ repository:
       # Reference (Stream)
       - name: "variable.jul"
         match: "[a-zA-Z][0-9a-zA-Z]*\\$"
+      # Boolean
+      - name: "constant.language.boolean.jul"
+        match: "\\b(true|false)\\b"
       # Reference (other)
       - name: "variable.other.constant.jul"
         match: "[a-z][0-9a-zA-Z]*"
