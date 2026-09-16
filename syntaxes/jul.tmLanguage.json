@@ -137,7 +137,7 @@
         },
         {
           "name": "keyword.operator.expression.returntype.jul",
-          "match": ":>"
+          "match": "(:|-|~)>"
         },
         {
           "name": "import-call.jul",

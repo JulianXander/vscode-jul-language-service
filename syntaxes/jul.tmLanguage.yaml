@@ -84,7 +84,7 @@ repository:
         match: =>
       # ReturnType
       - name: keyword.operator.expression.returntype.jul
-        match: :>
+        match: (:|-|~)>
       # import(...) ist syntaktisch ein Funktionsaufruf, wird aber nur als direkter Aufruf
       # unterstützt (JUL3040) - deshalb wie ein Keyword gefärbt, nicht wie ein Funktionsname.
       - name: import-call.jul
