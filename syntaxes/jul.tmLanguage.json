@@ -155,6 +155,21 @@
           ]
         },
         {
+          "name": "test-call.jul",
+          "begin": "\\b(test)\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.test.jul"
+            }
+          },
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
           "name": "function-call.jul",
           "begin": "([a-zA-Z][0-9a-zA-Z]*\\$?)\\(",
           "beginCaptures": {
@@ -204,6 +219,10 @@
         {
           "name": "keyword.control.import.jul",
           "match": "\\bimport\\b(?!\\()"
+        },
+        {
+          "name": "keyword.control.test.jul",
+          "match": "\\btest\\b(?!\\()"
         },
         {
           "name": "variable.other.constant.jul",

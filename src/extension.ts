@@ -18,6 +18,7 @@ import {
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient/node';
+import { registerTestExplorer } from './test-explorer.js';
 
 let client: LanguageClient;
 
@@ -85,6 +86,7 @@ export function activate(context: ExtensionContext) {
 	//#endregion core-lib virtual document
 
 	registerEmptyLiteralDecoration(context);
+	registerTestExplorer(context, client);
 }
 
 //#region empty literal decoration

@@ -95,6 +95,16 @@ repository:
         end: \)
         patterns:
           - include: "#expression"
+      # test(...) darf ebenfalls nur direkt aufgerufen werden (JUL2704) und wird deshalb wie ein
+      # Keyword gefärbt. Greift auch bei der Präfixform §name§.test(...).
+      - name: test-call.jul
+        begin: "\\b(test)\\("
+        beginCaptures:
+          "1":
+            name: keyword.control.test.jul
+        end: \)
+        patterns:
+          - include: "#expression"
       # FunctionCall
       - name: function-call.jul
         begin: "([a-zA-Z][0-9a-zA-Z]*\\$?)\\("
@@ -132,6 +142,10 @@ repository:
       # folgt.
       - name: "keyword.control.import.jul"
         match: "\\bimport\\b(?!\\()"
+      # test außerhalb eines Aufrufs, wie import oben (Deklaration in core-lib.jul, oder ein nach
+      # JUL2704 unzulässiger Verweis).
+      - name: "keyword.control.test.jul"
+        match: "\\btest\\b(?!\\()"
       # Reference (other)
       - name: "variable.other.constant.jul"
         match: "[a-z][0-9a-zA-Z]*"
