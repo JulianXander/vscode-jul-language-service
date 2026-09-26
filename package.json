@@ -65,6 +65,13 @@
 			}
 		],
 		"configurationDefaults": {
+			"editor.semanticTokenColorCustomizations": {
+				"rules": {
+					"*.impure:jul": {
+						"italic": true
+					}
+				}
+			},
 			"[jul]": {
 				"editor.detectIndentation": false,
 				"editor.insertSpaces": false,
