@@ -64,7 +64,19 @@
 				}
 			}
 		],
+		"breakpoints": [
+			{
+				"language": "jul"
+			}
+		],
 		"configurationDefaults": {
+			"debug.javascript.terminalOptions": {
+				"skipFiles": [
+					"<node_internals>/**",
+					"**/jul-compiler/out/**",
+					"**/out/runtime.js"
+				]
+			},
 			"editor.semanticTokenColorCustomizations": {
 				"rules": {
 					"*.impure:jul": {
