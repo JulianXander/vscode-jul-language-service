@@ -64,7 +64,6 @@
 		"semanticTokenTypes": [
 			{
 				"id": "typeConstructor",
-				"superType": "type",
 				"description": "Funktion, die einen Typ liefert, wie List oder Or"
 			}
 		],
@@ -74,6 +73,9 @@
 				"scopes": {
 					"variable.stream": [
 						"variable"
+					],
+					"typeConstructor": [
+						"constant.numeric"
 					]
 				}
 			}
@@ -95,11 +97,6 @@
 				"rules": {
 					"*.impure:jul": {
 						"italic": true
-					}
-				},
-				"[Dark Modern]": {
-					"rules": {
-						"typeConstructor:jul": "#A3D977"
 					}
 				}
 			},
