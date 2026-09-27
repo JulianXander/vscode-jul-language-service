@@ -61,6 +61,13 @@
 				}
 			}
 		],
+		"semanticTokenTypes": [
+			{
+				"id": "typeConstructor",
+				"superType": "type",
+				"description": "Funktion, die einen Typ liefert, wie List oder Or"
+			}
+		],
 		"semanticTokenScopes": [
 			{
 				"language": "jul",
@@ -88,6 +95,11 @@
 				"rules": {
 					"*.impure:jul": {
 						"italic": true
+					}
+				},
+				"[Dark Modern]": {
+					"rules": {
+						"typeConstructor:jul": "#A3D977"
 					}
 				}
 			},
