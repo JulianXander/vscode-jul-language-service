@@ -76,6 +76,9 @@ repository:
             name: constant.character.escape.jul
         patterns:
           - include: "#textContent"
+      # Type-level Branching
+      - name: keyword.operator.expression.branching.jul
+        match: ":\\?"
       # Branching
       - name: keyword.operator.expression.branching.jul
         match: \?

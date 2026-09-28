@@ -129,6 +129,10 @@
         },
         {
           "name": "keyword.operator.expression.branching.jul",
+          "match": ":\\?"
+        },
+        {
+          "name": "keyword.operator.expression.branching.jul",
           "match": "\\?"
         },
         {
