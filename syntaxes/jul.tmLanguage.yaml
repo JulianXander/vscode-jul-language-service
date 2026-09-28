@@ -169,7 +169,7 @@ repository:
         end: '\n'
       # todo comment
       - name: invalid.jul
-        begin: "\\t*# [tT][oO][dD][oO]"
+        begin: "\\t*#TODO\\b"
         end: '\n'
       # plain comment
       - name: comment.jul

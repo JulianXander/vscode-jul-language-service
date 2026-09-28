@@ -255,7 +255,7 @@
         },
         {
           "name": "invalid.jul",
-          "begin": "\\t*# [tT][oO][dD][oO]",
+          "begin": "\\t*#TODO\\b",
           "end": "\\n"
         },
         {
