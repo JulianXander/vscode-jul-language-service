@@ -163,6 +163,10 @@ repository:
       - name: punctuation.definition.tag.jul
         begin: "\\t*#(end)?region"
         end: '\n'
+      # jul-ignore comment
+      - name: punctuation.definition.tag.jul
+        begin: "\\t*# jul-ignore\\b"
+        end: '\n'
       # todo comment
       - name: invalid.jul
         begin: "\\t*# ?[tT][oO][dD][oO]"

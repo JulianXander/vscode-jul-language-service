@@ -249,6 +249,11 @@
           "end": "\\n"
         },
         {
+          "name": "punctuation.definition.tag.jul",
+          "begin": "\\t*# jul-ignore\\b",
+          "end": "\\n"
+        },
+        {
           "name": "invalid.jul",
           "begin": "\\t*# ?[tT][oO][dD][oO]",
           "end": "\\n"
