@@ -273,7 +273,7 @@ function findGlobalJulCli(): string | undefined {
 		}
 		if (process.platform === 'win32') {
 			// Das Shim von npm i -g liegt neben dem node_modules der globalen Pakete.
-			const cliPath = join(folder, 'node_modules', 'jul-compiler', 'out', 'cli.js');
+			const cliPath = join(folder, 'node_modules', 'jul-compiler', 'out', 'compiler', 'cli.js');
 			if (existsSync(join(folder, 'jul.cmd')) && existsSync(cliPath)) {
 				return cliPath;
 			}
