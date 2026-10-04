@@ -4,11 +4,9 @@ import {
 	ExtensionContext,
 	Position,
 	Range,
-	languages,
 	TextDocumentContentProvider,
 	TextEditor,
 	ThemeColor,
-	Uri,
 	window,
 } from 'vscode';
 
@@ -93,37 +91,47 @@ export function activate(context: ExtensionContext) {
 // Die bracket pair colorization von VSCode wird nach der Tokenisierung auf die Klammerzeichen
 // gelegt und übermalt damit jede Farbe aus Grammatik oder Semantic Tokens. Eine Decoration liegt
 // darüber und ist deshalb der einzige Weg, [] als eigenen Wert erkennbar zu machen.
+// Der Server schickt die Positionen nach jedem Neuparsen ungefragt. Eine Anfrage von hier müsste
+// beim Server ausstehende Änderungen sofort verarbeiten und würde dessen Zusammenfassen beim Tippen
+// aushebeln.
+type EmptyLiteralsParams = {
+	uri: string;
+	version: number;
+	ranges: {
+		start: { line: number; character: number; };
+		end: { line: number; character: number; };
+	}[];
+};
+
 function registerEmptyLiteralDecoration(context: ExtensionContext): void {
 	const decorationType = window.createTextEditorDecorationType({
 		color: new ThemeColor('jul.emptyLiteralForeground'),
 	});
 	context.subscriptions.push(decorationType);
+	// je Dokument der letzte Stand, für Editoren, die ohne Änderung sichtbar werden
+	const latestByUri = new Map<string, EmptyLiteralsParams>();
 
-	async function update(editor: TextEditor): Promise<void> {
-		if (editor.document.languageId !== 'jul') {
+	function apply(editor: TextEditor): void {
+		const emptyLiterals = latestByUri.get(editor.document.uri.toString());
+		// Positionen einer älteren Version passen nicht mehr. Die bisherigen Decorations bleiben
+		// stehen, VSCode verschiebt sie beim Tippen mit, und nach dem Verarbeiten kommt der neue Stand.
+		if (emptyLiterals?.version !== editor.document.version) {
 			return;
 		}
-		const ranges = await client.sendRequest<Range[]>('jul/emptyLiterals', {
-			uri: editor.document.uri.toString(),
-		});
-		editor.setDecorations(decorationType, ranges.map(range => new Range(
+		editor.setDecorations(decorationType, emptyLiterals.ranges.map(range => new Range(
 			new Position(range.start.line, range.start.character),
 			new Position(range.end.line, range.end.character))));
 	}
 
-	function updateVisible(uris: readonly Uri[]): void {
-		const changed = uris.map(uri => uri.toString());
-		window.visibleTextEditors
-			.filter(editor => changed.includes(editor.document.uri.toString()))
-			.forEach(update);
-	}
-
 	context.subscriptions.push(
-		window.onDidChangeVisibleTextEditors(editors => editors.forEach(update)),
-		// Diagnostics belegen, dass der Server die Datei neu geparst hat - ein Timer nach
-		// didChange würde nur raten, wann die Positionen gültig sind
-		languages.onDidChangeDiagnostics(event => updateVisible(event.uris)));
-	window.visibleTextEditors.forEach(update);
+		client.onNotification('jul/emptyLiterals', (emptyLiterals: EmptyLiteralsParams) => {
+			latestByUri.set(emptyLiterals.uri, emptyLiterals);
+			window.visibleTextEditors
+				.filter(editor => editor.document.uri.toString() === emptyLiterals.uri)
+				.forEach(apply);
+		}),
+		window.onDidChangeVisibleTextEditors(editors => editors.forEach(apply)),
+		workspace.onDidCloseTextDocument(document => latestByUri.delete(document.uri.toString())));
 }
 //#endregion empty literal decoration
 
