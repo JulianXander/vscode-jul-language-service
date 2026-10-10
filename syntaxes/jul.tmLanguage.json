@@ -108,6 +108,32 @@
           ]
         },
         {
+          "name": "meta.embedded.block",
+          "begin": "(§)(regex)\\n",
+          "beginCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            },
+            "2": {
+              "name": "string.jul"
+            }
+          },
+          "end": "(§)(?![(§#])",
+          "endCaptures": {
+            "1": {
+              "name": "constant.character.escape.jul"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#textContent"
+            },
+            {
+              "include": "#regexContent"
+            }
+          ]
+        },
+        {
           "name": "string.jul",
           "begin": "§",
           "beginCaptures": {
@@ -262,6 +288,74 @@
           "name": "comment.jul",
           "begin": "\\t*#",
           "end": "\\n"
+        }
+      ]
+    },
+    "regexContent": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.regexp",
+          "match": "\\\\(?:x\\h{2}|u\\h{4}|c[A-Za-z]|k<[^>§]*>|[1-9][0-9]*|[^§])"
+        },
+        {
+          "name": "keyword.control.anchor.regexp",
+          "match": "\\^|\\$"
+        },
+        {
+          "name": "keyword.operator.quantifier.regexp",
+          "match": "[?+*]|\\{[0-9]+(,[0-9]*)?\\}"
+        },
+        {
+          "name": "keyword.operator.or.regexp",
+          "match": "\\|"
+        },
+        {
+          "name": "constant.other.character-class.regexp",
+          "match": "\\."
+        },
+        {
+          "name": "constant.other.character-class.set.regexp",
+          "begin": "\\[\\^?",
+          "end": "\\]|(?=§(?![(§#]))",
+          "patterns": [
+            {
+              "include": "#textContent"
+            },
+            {
+              "name": "constant.character.escape.regexp",
+              "match": "\\\\(?:x\\h{2}|u\\h{4}|c[A-Za-z]|[^§])"
+            },
+            {
+              "name": "keyword.operator.range.regexp",
+              "match": "-"
+            }
+          ]
+        },
+        {
+          "name": "meta.group.regexp",
+          "begin": "(\\()(\\?<[^>=!§]+>|\\?:|\\?=|\\?!|\\?<=|\\?<!)?",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.group.regexp"
+            },
+            "2": {
+              "name": "punctuation.definition.group.assertion.regexp"
+            }
+          },
+          "end": "(\\))|(?=§(?![(§#]))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.group.regexp"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#textContent"
+            },
+            {
+              "include": "#regexContent"
+            }
+          ]
         }
       ]
     },

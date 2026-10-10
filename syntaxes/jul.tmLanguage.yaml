@@ -64,6 +64,24 @@ repository:
             contentName: meta.embedded.block.javascript
             patterns:
               - include: source.js
+      # regex Text
+      # Eigene Regex-Regeln statt source.js.regexp: Der Zustand läuft über Zeilen weiter, und jede
+      # Gruppe endet zusätzlich vor dem schließenden §, damit eine offene Gruppe beim Tippen nicht
+      # den Rest der Datei einfärbt.
+      - name: meta.embedded.block
+        begin: (§)(regex)\n
+        beginCaptures:
+          "1":
+            name: constant.character.escape.jul
+          "2":
+            name: string.jul
+        end: (§)(?![(§#])
+        endCaptures:
+          "1":
+            name: constant.character.escape.jul
+        patterns:
+          - include: "#textContent"
+          - include: "#regexContent"
       # plain Text
       - name: string.jul
         begin: §
@@ -175,6 +193,43 @@ repository:
       - name: comment.jul
         begin: \t*#
         end: '\n'
+  regexContent:
+    patterns:
+      - name: constant.character.escape.regexp
+        match: '\\(?:x\h{2}|u\h{4}|c[A-Za-z]|k<[^>§]*>|[1-9][0-9]*|[^§])'
+      - name: keyword.control.anchor.regexp
+        match: '\^|\$'
+      - name: keyword.operator.quantifier.regexp
+        match: '[?+*]|\{[0-9]+(,[0-9]*)?\}'
+      - name: keyword.operator.or.regexp
+        match: '\|'
+      - name: constant.other.character-class.regexp
+        match: '\.'
+      # Zeichenklasse
+      - name: constant.other.character-class.set.regexp
+        begin: '\[\^?'
+        end: '\]|(?=§(?![(§#]))'
+        patterns:
+          - include: "#textContent"
+          - name: constant.character.escape.regexp
+            match: '\\(?:x\h{2}|u\h{4}|c[A-Za-z]|[^§])'
+          - name: keyword.operator.range.regexp
+            match: '-'
+      # Gruppe, auch Lookaround und benannter Capture
+      - name: meta.group.regexp
+        begin: '(\()(\?<[^>=!§]+>|\?:|\?=|\?!|\?<=|\?<!)?'
+        beginCaptures:
+          "1":
+            name: punctuation.definition.group.regexp
+          "2":
+            name: punctuation.definition.group.assertion.regexp
+        end: '(\))|(?=§(?![(§#]))'
+        endCaptures:
+          "1":
+            name: punctuation.definition.group.regexp
+        patterns:
+          - include: "#textContent"
+          - include: "#regexContent"
   textContent:
     patterns:
       - name: constant.character.escape.jul
