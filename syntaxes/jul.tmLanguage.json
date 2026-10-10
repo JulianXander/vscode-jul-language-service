@@ -272,7 +272,9 @@
           "match": "§#"
         },
         {
-          "include": "#comment"
+          "name": "comment.jul",
+          "begin": "^\\t*#",
+          "end": "\\n"
         },
         {
           "name": "constant.character.escape.jul",

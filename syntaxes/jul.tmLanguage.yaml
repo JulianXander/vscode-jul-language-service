@@ -179,7 +179,11 @@ repository:
     patterns:
       - name: constant.character.escape.jul
         match: §#
-      - include: "#comment"
+      # Kommentare gibt es nur als eigene Zeile eines mehrzeiligen Textes, in einer Textzeile ist
+      # # normaler Text.
+      - name: comment.jul
+        begin: ^\t*#
+        end: '\n'
       - name: constant.character.escape.jul
         match: §§
       - name: string.interpolation.jul
