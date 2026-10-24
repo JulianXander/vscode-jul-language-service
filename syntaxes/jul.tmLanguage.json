@@ -158,6 +158,9 @@
           "match": ":\\?"
         },
         {
+          "match": "\\?(?=:)"
+        },
+        {
           "name": "keyword.operator.expression.branching.jul",
           "match": "\\?"
         },

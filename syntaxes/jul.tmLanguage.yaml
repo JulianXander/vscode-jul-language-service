@@ -97,6 +97,8 @@ repository:
       # Type-level Branching
       - name: keyword.operator.expression.branching.jul
         match: ":\\?"
+      # Optionales Feld im Dictionary-Typ (b?: X): das ? gehört zum Feldnamen und bleibt ungefärbt
+      - match: \?(?=:)
       # Branching
       - name: keyword.operator.expression.branching.jul
         match: \?
