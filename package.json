@@ -102,6 +102,7 @@
 			},
 			"[jul]": {
 				"editor.detectIndentation": false,
+				"editor.formatOnType": true,
 				"editor.insertSpaces": false,
 				"editor.tabSize": 2,
 				"editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?§",
