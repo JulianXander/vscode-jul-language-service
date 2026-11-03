@@ -72,6 +72,12 @@ type ReportEvent =
 		errors: (ReportLocation & { message: string; })[];
 	}
 	| {
+		type: 'loadFailed';
+		file: string;
+		failure: string;
+		failureLocation?: ReportLocation;
+	}
+	| {
 		type: 'finished';
 		testCount: number;
 		failedCount: number;
@@ -460,6 +466,22 @@ function applyReport(
 					reported.add(item);
 					run.errored(item, messages);
 				});
+				return;
+			}
+			case 'loadFailed': {
+				// Die Datei ließ sich nicht laden, gemeldet an ihren Items. Tests, die sie vor dem
+				// Fehler schon registriert hatte, laufen trotzdem: Ihr result kommt danach und gilt.
+				const message = new TestMessage(event.failure);
+				if (event.failureLocation) {
+					message.location = toLocation(event.failureLocation);
+				}
+				const fileId = getFileId(event.file);
+				invocation.items
+					.filter(item => item.uri && getFileId(item.uri.fsPath) === fileId)
+					.forEach(item => {
+						reported.add(item);
+						run.errored(item, message);
+					});
 				return;
 			}
 			case 'finished':
