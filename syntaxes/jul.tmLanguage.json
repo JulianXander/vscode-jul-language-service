@@ -203,6 +203,21 @@
           ]
         },
         {
+          "name": "assume-call.jul",
+          "begin": "\\b(assume)\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.assume.jul"
+            }
+          },
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
           "name": "function-call.jul",
           "begin": "([a-zA-Z][0-9a-zA-Z]*\\$?)\\(",
           "beginCaptures": {
@@ -256,6 +271,10 @@
         {
           "name": "keyword.control.test.jul",
           "match": "\\btest\\b(?!\\()"
+        },
+        {
+          "name": "keyword.control.assume.jul",
+          "match": "\\bassume\\b(?!\\()"
         },
         {
           "name": "variable.other.constant.jul",

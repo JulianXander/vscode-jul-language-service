@@ -128,6 +128,16 @@ repository:
         end: \)
         patterns:
           - include: "#expression"
+      # assume(...) ist eine ungeprüfte Typbehauptung, die der Emitter gesondert behandelt, und wird
+      # deshalb wie ein Keyword gefärbt. Greift auch bei der Präfixform x.assume(...).
+      - name: assume-call.jul
+        begin: "\\b(assume)\\("
+        beginCaptures:
+          "1":
+            name: keyword.control.assume.jul
+        end: \)
+        patterns:
+          - include: "#expression"
       # FunctionCall
       - name: function-call.jul
         begin: "([a-zA-Z][0-9a-zA-Z]*\\$?)\\("
@@ -169,6 +179,9 @@ repository:
       # JUL2704 unzulässiger Verweis).
       - name: "keyword.control.test.jul"
         match: "\\btest\\b(?!\\()"
+      # assume außerhalb eines Aufrufs, wie import oben (Deklaration in core-lib.jul).
+      - name: "keyword.control.assume.jul"
+        match: "\\bassume\\b(?!\\()"
       # Reference (other)
       - name: "variable.other.constant.jul"
         match: "[a-z][0-9a-zA-Z]*"
