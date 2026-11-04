@@ -182,6 +182,9 @@ repository:
       # assume außerhalb eines Aufrufs, wie import oben (Deklaration in core-lib.jul).
       - name: "keyword.control.assume.jul"
         match: "\\bassume\\b(?!\\()"
+      # _ bindet nichts (Definition, Destructuring, Parameter), nur allein und nicht als Teil eines Namens.
+      - name: "variable.language.discard.jul"
+        match: "(?<![0-9a-zA-Z_$])_(?![0-9a-zA-Z_$])"
       # Reference (other)
       - name: "variable.other.constant.jul"
         match: "[a-z][0-9a-zA-Z]*"

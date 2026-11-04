@@ -277,6 +277,10 @@
           "match": "\\bassume\\b(?!\\()"
         },
         {
+          "name": "variable.language.discard.jul",
+          "match": "(?<![0-9a-zA-Z_$])_(?![0-9a-zA-Z_$])"
+        },
+        {
           "name": "variable.other.constant.jul",
           "match": "[a-z][0-9a-zA-Z]*"
         },
