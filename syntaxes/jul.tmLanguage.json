@@ -218,6 +218,21 @@
           ]
         },
         {
+          "name": "assert-call.jul",
+          "begin": "\\b(assert)\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.assert.jul"
+            }
+          },
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "#expression"
+            }
+          ]
+        },
+        {
           "name": "function-call.jul",
           "begin": "([a-zA-Z][0-9a-zA-Z]*\\$?)\\(",
           "beginCaptures": {
@@ -275,6 +290,10 @@
         {
           "name": "keyword.control.assume.jul",
           "match": "\\bassume\\b(?!\\()"
+        },
+        {
+          "name": "keyword.control.assert.jul",
+          "match": "\\bassert\\b(?!\\()"
         },
         {
           "name": "variable.language.discard.jul",

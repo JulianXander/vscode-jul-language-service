@@ -138,6 +138,16 @@ repository:
         end: \)
         patterns:
           - include: "#expression"
+      # assert(...) prüft nur mit checkAssertions und fällt sonst samt Argumenten weg. Der Emitter
+      # behandelt es gesondert, deshalb wie assume als Keyword gefärbt, auch in der Präfixform.
+      - name: assert-call.jul
+        begin: "\\b(assert)\\("
+        beginCaptures:
+          "1":
+            name: keyword.control.assert.jul
+        end: \)
+        patterns:
+          - include: "#expression"
       # FunctionCall
       - name: function-call.jul
         begin: "([a-zA-Z][0-9a-zA-Z]*\\$?)\\("
@@ -182,6 +192,10 @@ repository:
       # assume außerhalb eines Aufrufs, wie import oben (Deklaration in core-lib.jul).
       - name: "keyword.control.assume.jul"
         match: "\\bassume\\b(?!\\()"
+      # assert außerhalb eines Aufrufs, wie test oben (Deklaration in core-lib.jul, oder ein nach
+      # JUL2505 unzulässiger Verweis).
+      - name: "keyword.control.assert.jul"
+        match: "\\bassert\\b(?!\\()"
       # _ bindet nichts (Definition, Destructuring, Parameter), nur allein und nicht als Teil eines Namens.
       - name: "variable.language.discard.jul"
         match: "(?<![0-9a-zA-Z_$])_(?![0-9a-zA-Z_$])"
